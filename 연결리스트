@@ -1,0 +1,376 @@
+'''
+파이썬 연결 리스트 구현
+'''
+
+#1 단일 연결 리스트
+class Node(object):
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        
+class SinglyLinkedList(object):
+    def __init__(self):
+        self.head = None
+        self.size = 0
+        
+    def size(self):
+        return self.size
+
+#1-1 삽입
+            
+    def insertNodeAtIndex(self, idx, node):
+        curn = self.head
+        prevn = None
+        cur_i = 0
+
+        if idx == 0:
+            if self.head:
+                nextn = self.head
+                self.head = node
+                self.head.next = nextn
+            else:
+                self.head = node
+        else:
+            while cur_i < idx:
+                if curn:
+                    prevn = curn
+                    curn = curn.next
+                else:
+                    break
+                cur_i += 1
+            if cur_i == idx:
+                node.next = curn
+                prevn.next = node
+            else:
+                return -1
+
+#1-2 삭제
+            
+    def deleteAtIndex(self, idx):
+        curn_i = 0
+        curn = self.head
+        prevn = None
+        nextn = self.head.next
+        if idx == 0:
+            self.head = nextn
+        else:
+            while curn_i < idx:
+                if curn.next:
+                    prevn = curn
+                    curn = nextn
+                    nextn = nextn.next
+                else:
+                    break
+                curn_i +=1
+            if curn_i == idx:
+                prevn.next = nextn
+            else:
+                return -1
+        
+#1-3 검색
+
+    def searchNode(self, target):
+        p = self.head
+        while curn.element != item:
+            curn = curn.next
+        return curn
+
+#2 이중 연결 리스트
+
+class Node(object):
+    def __init__(self, data):
+        self.prev = None
+        self.data = data
+        self.next = None
+
+class DoublyLinkedList(object):
+    def __init__(self):
+        self.head = None
+        self.size = 0
+        
+    def size(self):
+        return self.size
+
+#2-1 삽입
+        
+    def insertNodeAtIndex(self, idx, node):
+        prevn = None
+        nextn = None
+        if idx == 0:
+            if self. head:
+                self.head = node
+                self.head.next = nextn
+                nextn.prev = self.head
+            else:
+                self.head = node
+        else:
+            cur_i = 0
+            curn = self.head
+            while cur_i < idx:
+                if curn:
+                    prevn = curn
+                    curn = curn.next
+                else:
+                    break
+                cur_i += 1
+            if cur_i == idx:
+                node.prev = prevn
+                node.next = curn
+                prevn.next = node
+                if curn:
+                    curn.prev = node
+            else:
+                print(-1)
+                return -1
+
+#2-2 삭제
+            
+    def deleteAtIndex(self, idx):
+        nextn = None
+        prevn = None
+        cur_i = 0
+        if idx == 0:
+            if self.head:
+                self.head = self.head.next
+                self.head.prev = None
+                return
+            else:
+                print(-1)
+                return -1
+        curn = self.head
+
+        while cur_i < idx:
+            if curn.next:
+                prevn = curn
+                curn = curn.next
+                nextn = curn.next
+            else:
+                break
+            cur_i += idx:
+        if cur_i == idx:
+            if nextn:
+                nextn.prev = prev
+            prevn.next = nextn
+        else:
+            print(-1)
+            return -1
+
+#2-3 검색
+        
+    def searchNode(self, target):
+        curn = self.head
+        while curn.element != item:
+            curn = curn.next
+        return curn
+            
+
+#3 환형 연결 리스트
+
+class SingleNode(object):
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class CircularLinkedList(object):
+    def __init__(self):
+        self. head = None
+
+#3-1 삽입
+        
+    def insertNodeAtIndex(self, idx, node):
+        if idx == 0:
+            if self.head:
+                curn = self.head.next
+                cur_i = 1
+                while curn.next != self.head:
+                    curn = curn.next
+                    cur_i += 1
+
+                node.next = self.head
+                self.head = node
+                curn.next = self.head
+                return
+            else:
+                self.head = node
+                self.head.next = self.head
+                return
+        cur_i = 1
+        prevn = self.head
+        curn = self.head.next
+
+        while curn.next != self.head:
+            if cur_i == idx:
+                prevn.next = node
+                node.next = curn
+                return
+            prevn = curn
+            curn = curn.next
+            cur_i += 1
+
+        if cur_i == idx:
+            prevn = curn
+            curn = curn.next
+            prevn.next = node
+            node.next = curn
+            return
+        return -1
+                
+#3-2 삭제
+    def deleteAtIndex(self, idx):
+        if idx == 0:
+            if self.head:
+                if self.head.next:
+                    curn= self.head.next
+                    while curn.next != self.head:
+                        curn = curn.next
+                    curn.next = self.head.next
+                    self.head = self.head.nest
+                    return
+                else:
+                    self.head = None
+                    return
+            else:
+                prevn = self.head
+                curn = self.head.next
+                cur_i = 1
+                while curn != self.head:
+                    if cur_i == idx:
+                        nextn = curn.next
+                        prevn,next = nextn
+                        return
+                    prevn = curn
+                    curn = curn.next
+                    cur_i += 1
+
+                return -1
+    
+#3-3 검색
+    
+    def searchNode(self, target):
+        curn = self.head
+        while curn.element != item:
+            curn = curn.next
+        return curn
+
+===============================================================================
+'''
+C언어 연결 리스트 구현
+'''
+#1 단일 연결 리스트
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct NODE {
+	struct NODE *next;
+	int data;
+};
+
+#1-1 삽입
+
+Node *insert_node(int k, Node* t){
+	Node *s;
+	s = (Node*)malloc(sizeof(node));
+	s->data = k;
+	s->next = t->next;
+	t->next =s;
+	return s;
+} 
+
+#1-2 삭제
+
+int delete_Node(Node *p){
+	struct Node *q = p->next
+	p->next = q->next;
+	free(q);
+	return 1;
+}
+//사실 어떻게 해야 할지 모름//
+
+#1-3 검색
+
+Node* SearchNode(int k){
+	Node *s;
+	s= head->next;
+	while(s->data !=k && s->next !=tail)
+		s= s->next;
+	return s;
+}
+
+#2 이중 연결 리스트
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct NODE {
+	struct NODE *next;
+	struct NODE *pre;
+	int data;
+};
+
+#2-1 삽입
+
+Node* insert_Node(int k, Node *t){
+	Node *i;
+	if(t == head)
+		return NULL;
+	i = (Node*)malloc(sizeof(Node));
+	i->data =k;
+	t->prev->next = i;
+	i->prev = t->prev;
+	t->prev - i;
+	i->next = t;
+	return i;
+}
+
+#2-2 삭제
+
+int delete_Node(Node *p){
+	if(p == head || p == tail)
+		return 0;
+	p->prev->next = p->next;
+	p->next->prev = p->prev;
+	free(p);
+	return 1;
+}
+
+#2-3 검색
+
+Node* searchNode(int k){ 
+	Node* s;
+	s = head->next;
+	while(s->key != k && s != tail){
+		s = s->next;
+	}
+	return s;
+} 
+
+#3 환형 연결 리스트
+
+struct CircularList{
+	int data;
+	struct CircularList* next;
+};
+
+#3-1 삽입
+1)리스트가 비었을 때: 자기 자신 추가하고 자기참조하게 만들기
+2)그렇지 않을 때: 자기 자신 추가하고 이전 데이터가 새로운 애 가리키도록 하고 새로운 애가 다음 애 가리키도록 하기
+
+#3-2 삭제
+앞의 노드가 다음 노드 가리키도록 하고 해제(맨 마지막일 경우 tail 설정해주기)
+
+//구현을 못하겠음ㅜㅜ//
+
+#3-3 검색
+
+int SearchNode(struct Node* head){
+	struct Node* Current = head;
+	int count = 0;
+	if(head == NULL)
+		return 0;
+	do{
+		current = current->next;
+		count++;
+	}while (current != head);
+	return count;
+}
