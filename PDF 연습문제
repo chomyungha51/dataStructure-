@@ -1,0 +1,278 @@
+//1번
+#include <stdio.h>
+
+ void main() {
+	int num; int i;
+	printf("Input the number: ");
+	scanf("%d", &num);
+	for (i = 1; i <= 10; i++) {
+		printf("%d * %d = %d\n", num, i, num*i);
+	}
+}
+
+//2번
+#include <stdio.h>
+
+ void main() {
+    int num; int i; int j;
+    printf("Input the number: ");
+    scanf("%d", &num);
+    for (i = 1; i <= num; i++) {
+        for (j = 1; j <= i; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+ }
+//3번
+#include <stdio.h>
+
+ void main() {
+	int num; int i; int j;
+	printf("Input the number: ");
+	scanf("%d", &num);
+	for (i = 1; i <= num; i++) {
+		for (j = 1; j <= i; j++) {
+			printf("%d",j);
+		}printf("\n");
+	}
+}
+//4번
+#include <stdio.h>
+
+ void main() {
+	int num;  int i; int j;
+	printf("Input the number: ");
+	scanf("%d", &num);
+	for (i = 1; i <= num;i++) {
+		for (j = 1; j <= i;j++) {
+			printf("%d",i);
+		}printf("\n");
+	}
+}
+//5번
+#include <stdio.h>
+
+ void main() {
+	int num; int i; int j; int k=1;
+	printf("Input the number: ");
+	scanf("%d", &num);
+	for (i = 1; i <= num;i++) {
+		for (j = 1; j <= i;j++) {
+			printf("%d ", k++);
+		}
+		printf("\n");
+	}
+}
+//6번
+#include <stdio.h>
+
+void main() {
+	int num; 
+	int i; int j; int k;
+	char space = ' ';
+
+	printf("Input the number: ");
+	scanf("%d",&num);
+
+	//num이 짝수인 경우
+	if (num%2 == 0){
+		for (i = 0; i < num; i++) {
+			//앞의 공백은 num-(i+1)번 반복
+			for (j = num-(i+1); j > 0; j--) {
+				printf("%c", space);
+			}
+			//{*+공백}은 i+1번 반복
+			for (k = 1; k <= i+1; k++) {
+				printf("*%c", space);
+			}
+			//뒤의 공백도 num-(i+1)번 반복
+			for (j = num-(i+1); j > 0; j--) {
+					printf("%c", space);
+			}
+			printf("\n");
+		}
+	}
+	//num이 홀수인 경우
+	else{
+		for (i = 0; i < num; i++) {
+			//앞의 공백은 num-(i+1)번 반복
+			for (j = num-(i+1); j >= 0; j--) {
+				printf("%c", space);
+			}
+			//{*+공백}은 i+1번 반복
+			for (k = 1; k <= i+1; k++) {
+				printf("*%c", space);
+			}
+			//뒤의 공백은 num-i번 반복
+			for (j = num-i; j > 0; j--) {
+					printf("%c", space);
+			}
+			printf("\n");
+		}
+	
+	}
+
+}
+//7번
+#include <stdio.h>
+
+void main() {
+	int num; 
+	int number[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+	int i; int j; int k; int l=0;
+	char space = ' ';
+
+	printf("Input the number: ");
+	scanf("%d", &num);
+
+
+	for (i = 0; i < num; i++) {
+		//앞의 공백은 num-(i+1)번 반복
+		for (j = num - (i + 1); j > 0; j--) {
+			printf("%c", space);
+		}
+		//{*+공백}은 i+1번 반복
+		for (k = 1; k <= i + 1; k++) {
+			printf("%s ", number[l++]);
+		}
+		//뒤의 공백도 num-(i+1)번 반복
+		for (j = num - (i + 1); j > 0; j--) {
+			printf("%c", space);
+		}
+		printf("\n");
+	}
+}
+//8번
+#include <stdio.h>
+
+void main() {
+	int num; int number[] = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '10' };
+	int i; int j; int k; int l;
+	char space = ' ';
+
+	printf("Input the number: ");
+	scanf("%d", &num);
+
+	for (i = 0; i < num; i++) {
+		//앞의 공백은 num-(i+1)번 반복
+		for (j = num - (i + 1); j > 0; j--) {
+			printf("%c", space);
+		}
+		//{*+공백}은 i+1번 반복, i번째 줄이면 i를 i번 출력하기
+		for (k = 1; k <= i + 1; k++) {
+			printf("%c ", number[i]);
+		}
+		//뒤의 공백도 num-(i+1)번 반복
+		for (j = num - (i + 1); j > 0; j--) {
+			printf("%c", space);
+		}
+		printf("\n");
+	}
+}
+//9번
+#include <stdio.h>
+#define MAX_SIZE 100
+
+//스택 선언
+int stack[MAX_SIZE];
+int top = -1;
+int size = 0;
+
+//push하기
+void push(char value){
+	//꽉 찬 경우
+	if (size >= MAX_SIZE) {
+		printf("더 이상 push할 수 없습니다.");
+	}
+	//push할 공간이 있는 경우
+	else {
+		stack[top+1] = value;
+		top++;
+		size++;
+	}
+}
+
+//현재까지 stack에 push된 모든 data들을 pop해서 한 줄에 보여줌
+void popAllData() {
+	for (int i = top; i >= 0; i--) {
+		printf("%c", stack[i]);
+	}
+	printf("\n");
+}
+
+void main() {
+
+	int num;
+
+	//num 입력받기
+	printf("Input the number: ");
+	scanf("%d", &num);
+
+	//num만큼 '1'과 '0'을 순서대로 반복해서 push
+	for (int i = 0; i < num; i++) {
+		if (i % 2 == 0) {
+			push('1');
+		}
+		else {
+			push('0');
+		}
+		//i번째 줄 push 완료할 때마다 현재까지 누적된 data보여주기
+		popAllData();
+	}
+}
+
+//10번
+#include <stdio.h>
+
+int i; int j; int k;
+
+void main(){
+	int num;
+	char space = ' ';
+
+	//A부터 시작해서 대문자 알파벳 채우기
+	char characters[26]; char first = 'A';
+	for (i = 0; i < 26; i++) {
+		characters[i] = first++;
+	}
+
+	//num 입력받기
+	printf("Input the number: ");
+	scanf("%d", &num);
+
+	for (i = 0; i < num; i++) {
+		int count = 0;int l = 0;
+		//앞의 공백은 num-(i+1)번 반복
+		for (j = num - (i + 1); j > 0; j--) {
+			printf("%c", space);
+		}
+		//{알파벳+공백}은 2*(i+1)-1번 반복, 알파벳은 character를 num까지 순환하며 출력
+		for(int k = 0; k < 2 * (i + 1) - 1; k++){
+			// 인덱스 감소시키며 출력하는 경우
+			if (count%2 != 0){
+				printf("%c%c", characters[l--], space);
+				//다시 A까지 출력한 상태에서 B를 출력하려면 else로 넘어가서 증가하며 출력
+				//B를 출력해야 하므로 인덱스는 1로 초기화
+				if (l == -1) {
+					count++;
+					l = 1;
+				}
+			}
+			//인덱스 증가시키며 출력하는 경우
+			else {
+				printf("%c%c", characters[l++], space);
+				if (l > i) {
+					count++; 
+					//현재 인덱스 2인 상태에서 A출력하려면 2계단 내려가야 함
+					l--; l--;
+				}
+			}
+		}
+		//뒤의 공백도 num-(i+1)번 반복
+		for (j = num - (i + 1); j > 0; j--) {
+			printf("%c", space);
+		}
+		printf("\n");
+	}
+}
