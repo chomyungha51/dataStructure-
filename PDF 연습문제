@@ -86,10 +86,6 @@ void main() {
 			for (k = 1; k <= i+1; k++) {
 				printf("*%c", space);
 			}
-			//뒤의 공백도 num-(i+1)번 반복
-			for (j = num-(i+1); j > 0; j--) {
-					printf("%c", space);
-			}
 			printf("\n");
 		}
 	}
@@ -104,16 +100,11 @@ void main() {
 			for (k = 1; k <= i+1; k++) {
 				printf("*%c", space);
 			}
-			//뒤의 공백은 num-i번 반복
-			for (j = num-i; j > 0; j--) {
-					printf("%c", space);
-			}
 			printf("\n");
 		}
-	
 	}
-
 }
+
 //7번
 #include <stdio.h>
 
@@ -136,18 +127,15 @@ void main() {
 		for (k = 1; k <= i + 1; k++) {
 			printf("%s ", number[l++]);
 		}
-		//뒤의 공백도 num-(i+1)번 반복
-		for (j = num - (i + 1); j > 0; j--) {
-			printf("%c", space);
-		}
 		printf("\n");
 	}
 }
+
 //8번
 #include <stdio.h>
 
 void main() {
-	int num; int number[] = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '10' };
+	int num; int number[] = { '1','2','3','4','5','6','7','8','9','10' };
 	int i; int j; int k; int l;
 	char space = ' ';
 
@@ -163,13 +151,10 @@ void main() {
 		for (k = 1; k <= i + 1; k++) {
 			printf("%c ", number[i]);
 		}
-		//뒤의 공백도 num-(i+1)번 반복
-		for (j = num - (i + 1); j > 0; j--) {
-			printf("%c", space);
-		}
 		printf("\n");
 	}
 }
+
 //9번
 #include <stdio.h>
 #define MAX_SIZE 100
