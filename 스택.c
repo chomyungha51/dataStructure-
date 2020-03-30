@@ -1,35 +1,35 @@
 #include <stdio.h>
-#include <math.h>
+#include <stdlib.h>
+#include <time.h>
 
-/*Stack ±¸ÇöÇÏ±â*/
+/*Stack êµ¬í˜„í•˜ê¸°*/
 
 #define StackMax 100
 
 int MyStack[StackMax];
 int Top = 0;
 
-/*push ÇÔ¼ö ±¸ÇöÇÏ±â*/
+/*push í•¨ìˆ˜ êµ¬í˜„í•˜ê¸°*/
 
 void push() {
-	if (Top < StackMax-1) {
-		printf("MyStack¿¡ pushÇÒ °ªÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä: ");
-		scanf("%d", &MyStack[Top + 1]);
+	if (Top < StackMax) {
+		printf("MyStackì— pushí•  ê°’ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”: ");
+		scanf("%d", &MyStack[Top]);
 		Top++;
 	}
-	/*½ºÅÃÀÌ ²Ë Âù °æ¿ì*/
+	/*ìŠ¤íƒì´ ê½‰ ì°¬ ê²½ìš°*/
 	else
-		printf("½ºÅÃÀÌ ²Ë Â÷¼­ ´õ ÀÌ»ó push ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+		printf("ìŠ¤íƒì´ ê½‰ ì°¨ì„œ ë” ì´ìƒ push í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 }
-/*pop ÇÔ¼ö ±¸ÇöÇÏ±â*/
+/*pop í•¨ìˆ˜ êµ¬í˜„í•˜ê¸°*/
 void pop() {
 	int result;
-	if (Top == 0)
-		printf("½ºÅÃÀÌ ºñ¾î ÀÖ¾î pop ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+	if (Top <= 0)
+		printf("ìŠ¤íƒì´ ë¹„ì–´ ìžˆì–´ pop í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 	else {
-		result = MyStack[Top + 1];
-		MyStack[Top + 1] = 0;
+		result = MyStack[Top];
 		Top--;
-		printf("pop ½ÇÇà °á°ú %d¸¦ ¾ò¾ú½À´Ï´Ù.", result);
+		printf("pop ì‹¤í–‰ ê²°ê³¼ %dë¥¼ ì–»ì—ˆìŠµë‹ˆë‹¤.", result);
 	}
 }
 
@@ -41,29 +41,32 @@ int StackInfo() {
 
 void SearchInStack() {
 	int i; int found = 0; int value;
-	printf("Ã£°í ½ÍÀº °ªÀ» ÀÔ·ÂÇÏ½Ã¿À: ");
+	printf("ì°¾ê³  ì‹¶ì€ ê°’ì„ ìž…ë ¥í•˜ì‹œì˜¤: ");
 	scanf("%d", &value);
-	for (i = 1; i <= StackMax; i++) {
+	for (i = 0; i < StackMax; i++) {
 		if (MyStack[i] == value) {
-			printf("%d´Â %d¹øÂ°¿¡ ÀÖ½À´Ï´Ù.", value, i);
+			printf("%dëŠ” %dë²ˆì§¸ì— ìžˆìŠµë‹ˆë‹¤.", value, i);
 			found = 1;
 		}
 		else
 			i++;
 	}
-	printf("Ã£´Â °ªÀÌ ½ºÅÃ¿¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+	if (found == 0)
+		printf("ì°¾ëŠ” ê°’ì´ ìŠ¤íƒì— ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 }
+
 void main() {
+	srand(time(NULL));
 	int random;
 	StackInfo();
 	push();
 	pop();
-	printf("·£´ýÀ¸·Î MyStackÀ» Ã¤¿ì½Ã°Ú½À´Ï±î? (¿¹:1/ ¾Æ´Ï¿À: 2)");
+	printf("ëžœë¤ìœ¼ë¡œ MyStackì„ ì±„ìš°ì‹œê² ìŠµë‹ˆê¹Œ? (ì˜ˆ:1/ ì•„ë‹ˆì˜¤: 2)");
 	Scanf("%d", &random);
 	if (random == 1)
 		while (Top != StackMax) {
-			MyStack[Top + 1] = rand() % 100;
-			Top++;
-		}printf("½ºÅÃÀÌ ²Ë Ã¡½À´Ï´Ù. *´õ ÀÌ»ó pushÇÒ ¼ö ¾ø½À´Ï´Ù*");
+			MyStack[Top++] = rand() % 100;
+		}
+		printf("ìŠ¤íƒì´ ê½‰ ì°¼ìŠµë‹ˆë‹¤. *ë” ì´ìƒ pushí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤*");
 	SearchInStack();
 }
