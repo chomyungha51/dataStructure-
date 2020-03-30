@@ -6,43 +6,43 @@ int current = 0;
 
 void Insert() {
 	int new;
-	if (current <= QueueMax-1) {
-		printf("Ãß°¡ÇÏ°í ½ÍÀº ¼ö¸¦ ÀÔ·ÂÇÏ½Ã¿À: ");
+	if (current < QueueMax) {
+		printf("ì¶”ê°€í•˜ê³  ì‹¶ì€ ìˆ˜ë¥¼ ì…ë ¥í•˜ì‹œì˜¤: ");
 		scanf("%d", &new);
-		MyQueue[current + 1] = new;
-		current++;
+		MyQueue[current++] = new;
 	}
 	else {
-		printf("QueueÀÇ ÃÖ´ë ¹üÀ§¸¦ ÃÊ°úÇÏ¿© »õ·Î¿î °ªÀ» Ãß°¡ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+		printf("Queueì˜ ìµœëŒ€ ë²”ìœ„ë¥¼ ì´ˆê³¼í•˜ì—¬ ìƒˆë¡œìš´ ê°’ì„ ì¶”ê°€í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 	}
 }
 
 void Delete() {
 	int result; int i;
 	if (current == 0)
-		printf("ÇöÀç Queue°¡ ºñ¾î ÀÖ¾î »èÁ¦ÇÒ °ªÀÌ ¾ø½À´Ï´Ù.");
+		printf("í˜„ì¬ Queueê°€ ë¹„ì–´ ìˆì–´ ì‚­ì œí•  ê°’ì´ ì—†ìŠµë‹ˆë‹¤.");
 	else {
-		result = MyQueue[1];
-		for (i = 1; i <= current; i++) {
+		result = MyQueue[0];
+		for (i = 0; i < current; i++) {
 			MyQueue[i] = MyQueue[i + 1];
-		}MyQueue[current] = 0;
+		}
+
 		current--;
-		printf("%d¸¦ ¾ò¾ú½À´Ï´Ù.", result);
+		printf("%dë¥¼ ì–»ì—ˆìŠµë‹ˆë‹¤.", result);
 	}
 }
 
 void SearchInQueue() {
 	int value; int i; int found = 0;
-	printf("Ã£°í ½ÍÀº ¼ıÀÚ¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+	printf("ì°¾ê³  ì‹¶ì€ ìˆ«ìë¥¼ ì…ë ¥í•˜ì„¸ìš”: ");
 	scanf("%d", &value);
-	for (i = 1; i < current + 1; i++) {
+	for (i = 0; i < current; i++) {
 		if (MyQueue[i] == value) {
 			found = 1;
-			printf("Ã£°íÀÚ ÇÏ´Â ¼ıÀÚ´Â %d¹øÂ°¿¡ ÀÖ½À´Ï´Ù.", i);
+			printf("ì°¾ê³ ì í•˜ëŠ” ìˆ«ìëŠ” %dë²ˆì§¸ì— ìˆìŠµë‹ˆë‹¤.", i);
 		}
 	}
 	if (found == 0)
-		printf("MyQueue¿¡ ¿øÇÏ´Â °ªÀÌ ¾ø½À´Ï´Ù.");
+		printf("MyQueueì— ì›í•˜ëŠ” ê°’ì´ ì—†ìŠµë‹ˆë‹¤.");
 }
 
 void main() {
