@@ -5,7 +5,7 @@ int main()
 {
     char word[30];               
     int length;                  
-    int TureorNot = true;    
+    int TureorNot = "true";    
 
     printf("단어를 입력하세요: ");
     scanf("%s", word);
