@@ -1,0 +1,295 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/*
+
+//1 단일 연결 리스트
+typedef struct Node{
+	struct Node* next;
+	int data;
+}Node;
+
+
+// 삽입
+void add(Node* head, int data) 
+{
+	Node* temp = (Node*)malloc(sizeof(Node)); // 현재 위치 저장할 노드
+	Node* new;
+	new = (Node*)malloc(sizeof(Node)); // 추가할 노드
+	temp = head;
+
+	while (temp->next != NULL) {
+		temp = temp->next;
+	}
+	new->next = NULL;    // 새 노드의 다음 노드에 기준 노드의 다음 노드를 지정
+	new->data = data;            // 데이터 저장
+
+	temp->next = new;    // 기준 노드의 다음 노드에 새 노드를 지정
+}
+
+//삭제
+void removeNext(Node* head)    // 기준 노드의 다음 노드를 삭제하는 함수
+{
+	Node* removed = head->next;    // 기준 노드의 다음 노드 주소를 저장
+	head->next = removed->next;     // 기준 노드의 다음 노드에 삭제할 노드의 다음 노드를 지정
+
+	free(removed);    // 노드 메모리 해제
+}
+
+// 검색
+void SearchNode(Node* node, int value) {
+	//
+	Node* current = node->next; int count=0;
+	while (current->data != value && current->next != NULL) {
+		current = current->next;
+		count++;
+	}
+	if (current->next == NULL && current->data != value)
+		printf("%d는 리스트 안에 없습니다.",value);
+	printf("%d는 리스트의 %d 번째에 존재합니다.\n", value, count+1);
+
+}
+
+void display(Node* head) {
+	//첫 번째 노드부터 출력
+	printf("현재 연결리스트에는 ");
+	Node* current = head->next;
+	while (current != NULL) {
+		printf("%d ", current->data);
+		current = current->next;
+	}
+	printf("가 있습니다.\n");
+}
+
+void main() {
+	//head노드 생성
+	Node* H= (Node*)malloc(sizeof(Node));
+	H->next = NULL;
+
+	//0부터 4까지 삽입
+	for (int i = 0; i < 5; i++) {
+		add(H, i);
+	}
+	display(H);
+	SearchNode(H, 3);
+	printf("처음 입력한 데이터를 삭제합니다.\n");
+	removeNext(H);
+	display(H);
+}
+
+
+//이중 연결 리스트
+
+typedef struct NODE {
+	int data;
+	struct NODE* next;
+	struct NODE* pre;
+} NODE;
+
+
+// 추가
+void add(NODE* head, int data)
+{
+	NODE* temp = (NODE*)malloc(sizeof(NODE)); // 현재 위치 저장할 shem
+	NODE* new= (NODE*)malloc(sizeof(NODE)); // 추가할 노드
+
+	//맨 마지막 위치 찾기
+	temp = head;
+	while (temp->next != NULL) {
+		temp = temp->next;
+	}
+	new->next = NULL;    // 새 노드 맨 뒤에 저장할거라서
+	new->data = data; // 데이터 저장
+
+	temp->next = new;    
+	new->pre = temp;
+}
+
+//리스트의 idx번에 노드 삽입
+void insert(NODE* head, int idx, int value) {
+	NODE* temp; // idx전 노드 위치 저장하려고
+	NODE * new = (NODE*)malloc(sizeof(NODE)); //삽입할 노드 만들기
+	new->data = value;
+	new->next = NULL;
+	new->pre = NULL;
+
+	//idx 전 노드 위치 찾기
+	temp = head;
+	for (int i = 0; i < idx-1; i++) {
+		temp = temp->next;
+	}
+	//new-temp-temp->next순으로 연결
+	new->pre = temp;
+	new->next = temp->next;
+	temp->next = new;
+	temp->next->pre = new;
+	
+	printf("리스트의 %d번째에 %d를 삽입했습니다.\n", idx, value);
+}
+//삭제
+void removeNode(NODE* head, int idx)    // idx 번째 노드를 삭제하는 함수
+{
+	NODE* temp = (NODE*)malloc(sizeof(NODE)); // idx번 노드 위치 저장하려고
+	//idx번 노드 위치 찾기
+	temp = head;
+	for (int i = 0; i < idx-1 ; i++) {
+		temp = temp->next;
+	}
+	temp->next->pre = temp->pre;//idx앞 노드가 next로 idx뒤 노드 가리키게 함
+	temp->pre->next = temp->next;// idx뒤 노드가 pre로 idx앞 노드 가리키게 함
+    // idx 번째 메모리 해제
+	free(temp);
+}
+
+// 검색
+void SearchNode(NODE* node, int value) {
+
+	NODE* current = node->next; int count = 0;
+	while (current->data != value && current->next != NULL) {
+		current = current->next;
+		count++;
+	}
+	if (current->next == NULL && current->data != value)
+		printf("%d는 리스트 안에 없습니다.\n", value);
+	printf("%d는 리스트의 %d 번째에 존재합니다.\n", value, count + 1);
+}
+
+void display(NODE* head) {
+	//첫 번째 노드부터 출력
+	printf("현재 연결리스트에는 ");
+	NODE* current = head->next;
+	while (current != NULL) {
+		printf("%d ", current->data);
+		current = current->next;
+	}
+	printf("가 있습니다.\n");
+}
+
+void main() {
+	//head노드 생성
+	NODE* H = (NODE*)malloc(sizeof(NODE));
+	H->next = NULL;
+
+	//0부터 4까지 삽입
+	for (int i = 0; i < 5; i++) {
+		add(H, i);
+	}
+	display(H);
+	insert(H, 2, 9);
+	display(H);
+	SearchNode(H, 4);
+	display(H);
+	printf("3번째 데이터를 삭제합니다.\n");
+	removeNode(H, 3);
+	display(H);
+}
+
+*/
+
+//환형 연결 리스트
+
+typedef struct Circular {
+	struct Circular* next;
+	int data;
+}Circular;
+
+Circular* create(int value) {
+	Circular* new = (Circular*)malloc(sizeof(Circular));
+	new->next = NULL;
+	new->data = value;
+	return new;
+}
+
+// 삽입
+void insert(Circular* head, int idx, int value) {
+	//제일 앞에 삽입
+	if (idx == 0) {
+		Circular* new = create(value);
+		new->next = head;
+		Circular* temp = head;
+		while (temp->next != head) {
+			temp = temp->next;
+		}
+		temp->next = new;
+	}
+	else {
+		Circular* temp = head; int count = 1;
+		while (temp->next != head) {
+			temp = temp->next;
+			count++;
+		}
+		//맨뒤에 삽입
+		if (idx == count) {
+			Circular* new = create(value);
+			new->next = head;
+			temp->next = new;
+		}
+		//중간에 삽입:단일이랑 같음
+
+		else {
+			Circular* new = create(value);
+			Circular* temp = head;
+			for (int i = 0; i < idx - 1; i++) {
+				temp = temp->next;
+			}
+			new->next = temp->next;
+			temp->next = new;
+		}
+	}
+	printf("%d번째에 %d를 삽입했습니다.\n", idx, value);
+}
+
+
+//삭제
+void remove(Circular* head, int idx) {
+	Circular* temp = head;
+	while (temp->next == head) {
+		temp = temp->next;
+	}
+	//첫번째 노드 삭제
+	if (idx == 0) {
+		Circular* a = head;
+		a->next = head;
+		temp->next = head->next;
+		head = head->next;
+		free(a);
+	}
+	//마지막 노드 삭제
+	else if(idx == temp){
+		temp = head;
+		Circular* previous;
+		while (temp->next->next == head) {
+			temp = temp->next;
+		}
+		previous = temp;
+		Circular* last = head;
+		while (last->next == head) {
+			last = last->next;
+		}
+		previous->next = head;
+		free(last);
+	}
+	//중간 노드 삭제: 
+	else{
+		temp = head;
+		for (int i = 0; i < idx-1; i++) {
+			temp = temp->next;
+		}
+		temp->next = temp->next->next;
+		free(temp->next);
+	}
+}
+
+// 검색
+int Search(Circular* head) {
+	Circular* current = head;
+	int count = 0;
+	if (head == NULL)
+		return 0;
+	do {
+		current = current->next;
+		count++;
+	} 
+	while (current != head);
+	return count;
+}
