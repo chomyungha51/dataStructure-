@@ -1,0 +1,106 @@
+#include <stdio.h>
+#define MAX_SIZE 100
+
+void HeapAndHeapSort() {
+	int testHeap[MAX_SIZE] = {0,};
+	int current = 0; int data;
+	int temp; int n;
+
+	printf("힙에 삽입하고 싶은 데이터의 개수를 입력하시오: \n");
+	scanf("%d", &n);
+
+	//n번 입력받아 삽입
+	for (int i=1;i<n+1;i++){
+		if (current == MAX_SIZE) {
+			printf("더 이상 데이터를 삽입할 수 없습니다.\n");
+			break;
+		}
+		else{
+			printf("힙에 삽입할 데이터를 입력하시오: \n");
+			scanf("%d", &data);
+			////맨 뒤에 추가하고 인덱스 늘리기
+			current++;
+			testHeap[current] = data;
+			if (current == 1) {
+				continue;
+			}
+			else{
+				int idx = current;
+				//루트노드가 아니고 추가할 데이터가 부모 노드보다 작으면 swap
+				while (idx != 1 && data < testHeap[idx / 2]) {
+					temp = testHeap[idx / 2];
+					testHeap[idx / 2] = data;
+					testHeap[idx] = temp;
+					idx /= 2;
+				}
+			}
+		}
+	}
+	//삭제
+	//루트노드에 맨 마지막 값을 넣은 후 인덱스 줄이기
+	int result = testHeap[1];
+	testHeap[1] = testHeap[current--];
+
+	//현재 인덱스만큼 반복해서
+	for (int i = 1; i <= current; i++) {
+		int child = testHeap[2 * i];
+		if (testHeap[2 * i] > testHeap[2 * i + 1]) {
+			child = testHeap[2 * i + 1];
+		}
+		//1. 루트노드 값이 왼쪽 자식보다 크면 swap
+		if (testHeap[i]>child) {
+			temp = testHeap[i];
+			testHeap[i] = testHeap[2*i];
+			testHeap[2 * i] = temp;
+		}
+		//2. 자식보다 작으면 break
+		else if (testHeap[i]<testHeap[2*i]) {
+			break;
+		}
+	}
+	printf("힙에서 %d를 삭제했습니다\n", result);
+	printf("현재 힙: ");
+	for (int i = 1; i < n; i++) {
+		printf("%d ", testHeap[i]);
+	}
+	printf("\n");
+}
+
+void SelectionSort() {
+	//data입력받기
+	int arr[10];
+	printf("정렬하고 싶은 10가지 값을 입력하시오.\n");
+	for (int i = 0; i < 10; i++) {
+		scanf("%d", &arr[i]);
+	}
+	
+	int min; int minIndex; int temp;
+	for (int i = 0; i < 9; i++) {
+		min = arr[i];
+		for (int j = i+1; j < 10 ;j++) {
+			if (arr[j] < min) {
+				min = arr[j];
+				minIndex = j;
+			}
+		}
+		if (min == arr[i]) {
+			continue;
+		}
+		temp = arr[i];
+		arr[i] = min;
+		arr[minIndex] = temp;
+	}
+	printf("정렬된 값을 출력합니다.\n");
+	for (int i = 0; i < 10; i++) {
+		printf("%d ", arr[i]);
+	}
+
+	//data에서 첫 번째를 최솟값으로 놓고, 뒤로 가면서 최솟값 찾은 후 첫 번째 자리에 두기
+	//두 번째로 이동하여 세 번째부터 맨 마지막까지 반복하고, n-1번 실행
+	//출력하기
+}
+
+void main() {
+	HeapAndHeapSort();
+	SelectionSort();
+}
