@@ -2,7 +2,7 @@
 #define MAX_SIZE 100
 
 void HeapAndHeapSort() {
-	int testHeap[MAX_SIZE] = {0,};
+	int testHeap[MAX_SIZE];
 	int current = 0; int data;
 	int temp; int n;
 
