@@ -21,10 +21,7 @@ void HeapAndHeapSort() {
 			////맨 뒤에 추가하고 인덱스 늘리기
 			current++;
 			testHeap[current] = data;
-			if (current == 1) {
-				continue;
-			}
-			else{
+			if{
 				int idx = current;
 				//루트노드가 아니고 추가할 데이터가 부모 노드보다 작으면 swap
 				while (idx != 1 && data < testHeap[idx / 2]) {
