@@ -171,22 +171,36 @@ void function19() {
 	scanf("%d", &n);
 	int arr[] = (int*)malloc(sizeof(int) * n);
 	int count[] = (int*)malloc(sizeof(int) * n);
-	int countchar = 0;
-	printtf("The values store into the array are: ");
-	for (int i = 0; i < n; i++) {
-		scanf("%d ", &arr[i]);
+	int countchar = 0; int number;
+	printf("The values store into the array are: ");
+	for (int k = 0; k < n; k++) {
+		scanf("%d", &arr[k]);
 	}
+	
+	for (int i = 0; i < n - 1; i++) {
+		for (int j = i + 1; j < n; j++) {
+			if (arr[i] == arr[j]) {
+				number++;
+				if (number > 1) {
+					arr[j] = NULL;
+				}
+			}
+		}
+	}
+
 	for (int i = 0; i < n-1; i++) {
 		count[i] = 1;
 		for (int j = i+1; j < n; j++) {
-			if (arr[i] == arr[j]) {
+			if (arr[i] == NULL)
+				continue;
+			else if (arr[i] == arr[j]) {
 				count[i]++;
 			}
 		}
-		if (count > 1)
-			countchar++;
 	}
-	printtf("The number of duplicate elements are: %d", countchar);
+	for (int i = 0; i < n - 1; i++) {
+		printtf("The number of %d in the array are: %d",arr[i], count[i]);
+	}
 }
 
 void function20() {
@@ -273,12 +287,41 @@ void function23() {
 }
 
 void function24() {
-	
+	int n; int data;
+	int arr1[3][3];
+	int arr2[3][3];
+	printf("The values store into the arr1: ");
+	for (int i = 0; i < n; i++) {
+		scanf("%d ", &arr1[i]);
+	}
+	printtf("The values store into the arr2 are: ");
+	for (int i = 0; i < n; i++) {
+		scanf("%d ", &arr2[i]);
+	}
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			printf("%d", arr1[i][j] - arr2[i][j]);
+		}
+	}
 	
 }
 
 void function25() {
+	int arr1[3][3]; int result;
+	printf("The values store into the arr1: ");
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			scanf("%d ", &arr1[i][j]);
+		}
+	}
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			if (i == j) {
+				printf("%d ",arr1[i][j]);
+			}
+		}
 
+	}
 }
 
 void main() {
