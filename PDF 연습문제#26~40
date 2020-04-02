@@ -1,0 +1,282 @@
+#include <stdio.h>
+
+void function26() {
+	int i; int j;
+	int arr1[3][3];
+	int arr2[3][3];
+	printf("Input arr1's elements: ");
+	for (i = 0; i < 3; i++) {
+		for (j = 0; j < 3; j++) {
+			scanf("%d", &arr1[i][j]);
+		}
+	}
+	printf("Input arr2's elements: ");
+	for (i = 0; i < 3; i++) {
+		for (j = 0; j < 3; j++) {
+			scanf("%d", &arr2[i][j]);
+		}
+	}
+	while (i<3 && j<3) {
+		if (arr1[i][j] == arr2[i][j]) {
+			i++; j++;
+		}
+		else {
+			printf("arr1 and arr2 are not equal.");
+			break;
+			return;
+		}
+	}
+	printf("arr1 and arr2 are equal.");
+}
+
+void function27() {
+	int arr[3]; int subarr[3] = {0,}; int i; int j;
+	printf("Input arr's elements: ");
+	for (i = 0; i < 3; i++) {
+		scanf("%d", &arr[i]);
+	}
+	for (i = 0; i < 2; i++) {
+		for (j = i+1; j < 3; j++) {
+			subarr[i] += arr[j];
+		}
+	}
+	subarr[3] = arr[3];
+	int maxSum = subarr[0];
+	for (i = 1; i < 3; i++) {
+		if (maxSum < subarr[i]) {
+			maxSum = subarr[i];
+		}
+	}
+
+	printf("The largest sum of contiguous subarray of arr: %d", maxSum);
+}
+
+void function28() {
+	int arr[3]; int countArr[3]; int i; int j;
+	printf("Input arr's elements: ");
+	for (i = 0; i < 3; i++) {
+		scanf("%d", &arr[i]);
+	}
+	for (i = 0; i < 2; i++) {
+		for (j = 1; j < 3; j++) {
+			if (arr[i] == arr[j]) {
+				countArr[i]++;
+				arr[j] = NULL;
+			}
+		}
+	}
+	int majority = countArr[0];
+	for (i = 1; i < 3; i++) {
+		if (countArr[i] > majority) {
+			majority = countArr[i];
+		}
+	}
+	if (majority == 1) {
+		printf("Arr's elements have same frequency.");
+	}
+	else {
+		printf("The majotiry element of Array is: ", majority);
+	}
+}
+
+void function29() {
+	int arr[3]; int countArr[3] = {0,}; int i; int j;
+	printf("Input arr's elements: ");
+	for (i = 0; i < 3; i++) {
+		scanf("%d", &arr[i]);
+	}
+	for (i = 0; i < 2; i++) {
+		for (j = 1; j < 3; j++) {
+			if (arr[i] == arr[j]) {
+				countArr[i]++;
+				arr[j] = NULL;
+			}
+		}
+	}
+	for(i=0;i<3;i++){
+		if (countArr[i] == 0) {
+			printf("The unique elements of this array: ", countArr[i]);
+		}
+	}
+}
+
+void function30() {
+	//28이랑 같음
+}
+int add(int* num1, int* num2){
+	int result=*num1+*num2;
+	return result;
+}
+void function31() {
+	int first; int second;
+	printf("Input two numbers for addition: ");
+	scanf("%d %d",&first, &second);
+	printf("The result is: %d", add(&first, &second));
+}
+int lengthofString(char* s) {
+	int length = 0;
+	while (*s != NULL) {
+		length++;
+		s++;
+	}
+	return length;
+}
+void function32() {
+	char* words;
+	printf("Input a string: ");
+	scanf("%s", words);
+	printf("The length of the string: %d", lengthofString(words));
+}
+
+void function33() {
+	char* words;
+	printf("Input a string: ");
+	scanf("%s", words);
+	printf("The reverse version of the String : ");
+	for (int i = lengthofString(words)-1; i >= 0; i--) {
+		printf("%c", words+i);
+	}
+}
+
+void function34() {
+	char* words;
+	printf("Input a string: ");
+	scanf("%s", words);
+	printf("The Separate version of the String : ");
+	for (int i = 0; i < lengthofString(words); i++) {
+		printf("%c ", words + i);
+	}
+}
+
+void function35() {
+	char* word1; char* word2;
+	printf("Input a string1: ");
+	scanf("%s", word1);
+	printf("Input a string2: ");
+	scanf("%s", word2);
+
+	while (*word1 == NULL || *word2 == NULL) {
+		if (lengthofString(word1)!=lengthofString(word2) || *word1 != *word2){
+			printf("The stinrgs are not equal.");
+			break;
+			return;
+		}
+		else if (*word1 == *word2) {
+			word1++;
+			word2++;
+		}
+	}
+	printf("The strings are equal.");
+	return;
+}
+
+void function36() {
+	char* word1; char* word2;
+	printf("Input the string: ");
+	scanf("%s", word1);
+	printf("Input a substring: ");
+	scanf("%s", word2);
+	int found = 0;
+	while (*word1 != NULL) {
+		while (*word2 != NULL) {
+			if (*word1 == *word2) {
+				word1++;
+				word2++;
+				found = 1;
+			}
+			else {
+				found = 0;
+				break;
+			}
+		}
+	}
+	if (found == 0) {
+		printf("The substring does not exist in the string.");
+	}
+	else {
+		printf("The substring exist in the string.");
+	}
+}
+
+void function37() {
+	char* word1; char* word2 = "the"; int count = 0;
+	printf("Input the string: ");
+	scanf("%s", word1);
+	
+	int found = 0;
+	while (*word1 != NULL) {
+		while (*word2 != NULL) {
+			if (*word1 == *word2) {
+				word1++;
+				word2++;
+				found ++;
+				if (found == 3) {
+					count++;
+				}
+			}
+			else {
+				found = 0;
+				break;
+			}
+		}
+	}
+	printf("The number of times a given word 'the' appears in the given string is: %d ", count);
+}
+
+void function38() {
+	char* word;
+	printf("Input the string: ");
+	scanf("%s", word);
+	while (*word != NULL) {
+		if (*word >= 'a' && *word <= 'z') {
+			*word -= 32;
+		}
+		word++;
+	}
+	printf("Conver to upperstring: ", word);
+}
+
+void function39() {
+	char* word1; char* word2;
+	printf("Input a string: ");
+	scanf("%s", word1);
+	printf("Input replace character: ");
+	scanf("%s", word2);
+	while (*word1 != NULL) {
+		if (*word1 == ' ') {
+			*word1 = *word2;
+		}
+		word1++;
+	}
+	printf("%s", word1);
+}
+
+void function40() {
+	char* word;
+	printf("Input a character: ");
+	scanf("%c", word);
+	if (*word >= 'A' && *word <= 'Z') {
+		printf("%c is uppercase", word);
+	}
+	else {
+		printf("%c is not uppercase ", word);
+	}
+}
+
+void main() {
+	function26();
+	//function27();
+	//function28();
+	//function29();
+	//function30();
+	//function31();
+	//function32();
+	//function33();
+	//function34();
+	//function35();
+	//function36();
+	//function37();
+	//function38();
+	//function39();
+	//function40();
+}
