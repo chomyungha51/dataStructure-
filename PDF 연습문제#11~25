@@ -1,0 +1,233 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int recursion(int i) {
+	if (i == i)
+		return 1;
+	else {
+		return recursion(i - 1) + 1;
+	}
+}
+
+void function11() {
+	for (int i = 1; i < 51; i++) {
+		printf("%d", recursion(i));
+	}
+}
+
+int Fibo(int i) {
+	if (i == 1) {
+		return 1;
+	}
+	else if (i == 2) {
+		return 1;
+	}
+	else {
+		return Fibo(i - 2) + Fibo(i - 1);
+	}
+}
+void function12() {
+	int terms;
+	printf("Input the number of terms: ");
+	scanf("%d", &terms);
+	for (int i = 1; i < terms+1; i++) {
+		printf("%d  ", Fibo(i));
+	}
+}
+
+int GCD(int big, int small) {
+	if (big % small == 0)
+		return small;
+	else
+		return GCD(small, big%small);
+
+}
+void function13() {
+	int first; int second; int temp;
+	printf("Input 1st number: ");
+	scanf("%d", &first);
+	printf("Input 2nd number: ");
+	scanf("%d", &second);
+
+	//first가 더 큰 값이 되게 swap
+	if (second > first) {
+		temp = first;
+		first = second;
+		second = temp;
+	}
+	printf("The GCD of %d and %d is : %d", first, second, GCD(first, second));
+}
+
+int primeCheck(int num, int num2) {
+	if (num % num2 != 0)
+		return 0+primeCheck(num, num2-1);
+	else
+		return 1;
+}
+void function14() {
+	int number; int check;
+	printf("Input any positive number: ");
+	scanf("%d", &number);
+	check = primeCheck(number, number);
+	if (check = 0) {
+		printf("The number %d is a prime number", number);
+	}
+	else {
+		printf("The numver %d is not a prime number", number);
+	}
+}
+
+int power(int num, int num2) {
+	if (num2 == 0)
+		return 1;
+	else {
+		return num * power(num, num2 - 1);
+	}
+}
+void function15() {
+	int base; int powernum;
+	printtf("Input the base value: ");
+	scanf("%d", &base);
+	printtf("Input the value of power: ");
+	scanf("%d", &powernum);
+	printf("The Value of %d to the power of ^d is : %d", base, powernum, power(base, powernum));
+}
+
+void function16() {
+	int n; int data;
+	printtf("Input the size of array: ");
+	scanf("%d", &n);
+	int arr[] = (int*)malloc(sizeof(int) * n);
+	printtf("The values store into the array are: ");
+	for (int i = 0; i < n; i++) {
+		scanf("%d ", &arr[i]);
+	}
+	for (int i = n - 1; i >= 0; i--) {
+		printf("The values store into the array in reverse are: %d", arr[i]);
+	}
+}
+
+void function17() {
+	int n; int data; int count = 0;
+	printtf("Input the size of array: ");
+	scanf("%d", &n);
+	int arr[] = (int*)malloc(sizeof(int) * n);
+	int countchar=0;
+	printtf("The values store into the array are: ");
+	for (int i = 0; i < n; i++) {
+		scanf("%d ", &arr[i]);
+	}
+	for (int i = 0; i < n-1;i++) {
+		for (int j = i+1; j < n; j++) {
+			if (arr[i]==arr[j]){
+				count++;
+			}
+		}
+		if (count > 1)
+			countchar++;
+	}
+	printtf("The number of duplicate elements are: %d", countchar);
+}
+
+void function18() {
+	int i;
+	printf("Input the size of arrays: ");
+	scanf("%d", &i);
+	int arr1[]= (int*)malloc(sizeof(int) * i);
+	int arr2[]= (int*)malloc(sizeof(int) * i);
+	int arr[]= (int*)malloc(sizeof(int) * 2*i);
+	printf("Input arr1 elements: ");
+	for (int k = 0; k < i; k++) {
+		scanf("%d", &arr1[k]);
+	}
+	printf("Input arr2 elements: ");
+	for (int k = 0; k < i; k++) {
+		scanf("%d", &arr2[k]);
+	}
+	for (int k = 0; k < 2*i; k++) {
+		if (k < i)
+			arr[k] = arr1[k];
+		else
+			arr[k] = arr2[k - i];
+	}
+	int temp;
+	for (int k = 0; k < 2*i-1; k++) {
+		for (int j = k + 1; j < 2*i; j++) {
+			if (arr[k] < arr[j]) {
+				temp = arr[k];
+				arr[k] = arr[j];
+				arr[k] = temp;
+			}
+		}
+	}
+	for (int k = 0; k < 2 * i; k++) {
+		printf("%d ", arr[k]);
+	}
+}
+
+void function19() {
+	int n; int data;
+	printtf("Input the size of array: ");
+	scanf("%d", &n);
+	int arr[] = (int*)malloc(sizeof(int) * n);
+	int count[] = (int*)malloc(sizeof(int) * n);
+	int countchar = 0;
+	printtf("The values store into the array are: ");
+	for (int i = 0; i < n; i++) {
+		scanf("%d ", &arr[i]);
+	}
+	for (int i = 0; i < n-1; i++) {
+		count[i] = 1;
+		for (int j = i+1; j < n; j++) {
+			if (arr[i] == arr[j]) {
+				count[i]++;
+			}
+		}
+		if (count > 1)
+			countchar++;
+	}
+	printtf("The number of duplicate elements are: %d", countchar);
+}
+
+void function20() {
+
+}
+
+void function21() {
+
+}
+
+void function22() {
+
+}
+
+void function23() {
+
+}
+
+void function24() {
+
+}
+
+void function25() {
+
+}
+
+void main() {
+
+	function11();
+	//function12();
+	//function13();
+	//function14();
+	//function15();
+	//function16();
+	//function17();
+	//function18();
+	//function19();
+	//function20();
+	//function21();
+	//function22();
+	//function23();
+	//function24();
+	//function25();
+}
