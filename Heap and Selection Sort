@@ -57,7 +57,7 @@ void HeapAndHeapSort() {
 	}
 	printf("힙에서 %d를 삭제했습니다\n", result);
 	printf("현재 힙: ");
-	for (int i = 1; i < n; i++) {
+	for (int i = 1; i <= current; i++) {
 		printf("%d ", testHeap[i]);
 	}
 	printf("\n");
