@@ -190,23 +190,91 @@ void function19() {
 }
 
 void function20() {
-
+	int n; int data;
+	printtf("Input the size of array: ");
+	scanf("%d", &n);
+	int arr[] = (int*)malloc(sizeof(int) * n);
+	int count[] = (int*)malloc(sizeof(int) * n);
+	printtf("The values store into the array are: ");
+	for (int i = 0; i < n; i++) {
+		scanf("%d ", &arr[i]);
+	}
+	for (int i = 0; i < n - 1; i++) {
+		int temp;
+		for (int j = i + 1; j < n; j++) {
+			if (arr[i] >= arr[j]) {
+				temp=arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+	}
+	printtf("The maximum and minimum element in an array are: %d, %d",arr[n-1],arr[0] );
 }
 
 void function21() {
-
+	int n; int data;
+	printtf("Input the size of array: ");
+	scanf("%d", &n);
+	int arr[] = (int*)malloc(sizeof(int) * n);
+	int count[] = (int*)malloc(sizeof(int) * n);
+	printtf("The values store into the array are: ");
+	for (int i = 0; i < n; i++) {
+		scanf("%d ", &arr[i]);
+	}
+	for (int i = 0; i < n - 1; i++) {
+		int temp;
+		for (int j = i + 1; j < n; j++) {
+			if (arr[i] >= arr[j]) {
+				temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+	}
+	printtf("The sorted elements in ascentding order: ");
+	for (int i = 0; i < n; i++) {
+		printft("%d", arr[i]);
+	}
 }
 
 void function22() {
-
+	int n; int data;
+	printtf("Input the size of array: ");
+	scanf("%d", &n);
+	int arr[] = (int*)malloc(sizeof(int) * n);
+	int count[] = (int*)malloc(sizeof(int) * n);
+	printtf("The values store into the array are: ");
+	for (int i = 0; i < n; i++) {
+		scanf("%d ", &arr[i]);
+	}
+	for (int i = 0; i < n - 1; i++) {
+		int temp;
+		for (int j = i + 1; j < n; j++) {
+			if (arr[i] >= arr[j]) {
+				temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+	}
+	printtf("The second smallest element in an array is: %d", arr[1]);
 }
 
 void function23() {
-
+	int arr[3][3]; int data = 1;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; i++) {
+			arr[i][j] = data++;
+			printf("%d ", arr[i][j]);
+		}
+		printf("\n");
+	}
 }
 
 void function24() {
-
+	
+	
 }
 
 void function25() {
