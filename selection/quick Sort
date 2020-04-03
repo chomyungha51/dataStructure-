@@ -1,0 +1,60 @@
+nclude <stdio.h>
+
+void insertSort(int arr[]) {
+	int temp;
+	//1번 요소부터 내 앞에 있는 subarray들과 대소비교 후 정렬
+	for (int j = 1; j < 5; j++) {
+		for (int k = 0; k < j; k++) {
+			if (arr[j] < arr[k]) {
+				temp = arr[j];
+				arr[j] = arr[k];
+				arr[k] = temp;
+			}
+		}
+	}
+	printf("The sorted array in insertsort: ");
+	for (int i = 0; i < 5; i++) {
+		printf("%d", arr[i]);
+	}
+}
+
+void quickSort(int arr[], int low, int high ) {
+	int pivot = low;
+	int left = low+1; int right = high; int temp;
+	while (left < right) {
+		while (arr[left] < arr[pivot]) {
+			left++;
+		}
+		while (arr[right] > arr[pivot]) {
+			right--;
+		}
+		if (left < right) {
+			temp = arr[left];
+			arr[left] = arr[right];
+			arr[right] = temp;
+		}
+	}
+	temp = arr[pivot];
+	arr[pivot] = arr[right];
+	arr[right] = temp;
+
+	if (left < right) {
+		quickSort(&arr, 0, pivot-1);
+		quickSort(&arr, pivot - 1, high - 1);
+	}
+}
+
+void main() {
+	printf("Input 5 elements of Array: ");
+	int arr[5]; int temp;
+	for (int i = 0; i < 5; i++) {
+		scanf("%d", &arr[i]);
+	}
+	printf("InsertSort\n");
+	insertSort(arr);
+	printf("QuickSort\m");
+	quickSort(arr, 0, 4);
+	for (int i = 0; i < 5; i++) {
+		printf("%d", &arr[i]);
+	}
+}
