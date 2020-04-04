@@ -1,0 +1,157 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void fuction41() {
+	int arr[5]; int first; int second; int third;
+	printf("Original Array: ");
+	for (int i = 0; i < 5; i++) {
+		scanf("%d ",&arr[i]);
+	}
+	for (int x = 0; x < 3; x++) {
+		for (int y = x + 1; y < 4; y++) {
+			for (int z = y + 1; z < 5; z++) {
+				if (arr[x] + arr[y] + arr[z] == 0) {
+					first = arr[x];
+					second = arr[y];
+					third = arr[z];
+				}
+			}
+		}
+	}
+	printf("Unique triplets of the said array whose sum equal to zero: %d %d %d", first, second, third);
+}
+
+void fuction42() {
+	int arr[5];
+	
+
+	for (int i = 0; i < 5; i++) {
+		printf("Input %dth elements of array: ", i+1);
+		scanf("%d", &arr[i]);
+	}
+	
+	for (int i = 0; i < 4; i++) {
+		for (int j = i + 1; j < 5; j++) {
+			if (arr[i] == arr[j]) {
+				arr[j] = NULL;
+			}
+		}
+	}
+	for (int i = 0; i < 5; i++) {
+		if (arr[i] == NULL) {
+			continue;
+		}
+		else { printf("%d", arr[i]); }
+	}
+}
+typedef struct Node {
+	int key;
+	struct Node* next;
+}Node;
+
+Node* createNode(int data) {
+	Node* new = (Node*)malloc(sizeof(Node));
+	new->key = data;
+	new->next = NULL;
+	return new;
+}
+void add(Node* h, int data) {
+	Node* new = createNode(data);
+	new->next=h->next;
+	h->next = new;
+}
+void fuction43() {
+	int data1; int data2;
+	printf("Let's create a singly linked list!\n");
+	printf("Input first data: ");
+	scanf("%d", &data1);
+	Node* head = createNode(data1);
+
+	for (int i = 1; i < 5; i++) {
+		printf("Input %dth data: ", i);
+		scanf("%d", &data2);
+		add(head, data2);
+	}
+	Node* current = head;
+	printf("In singly linked list : ");
+	for (int i = 0; i < 5; i++) {
+		printf("%d", current->key);
+		current = current->next;
+	}
+}
+void fuction44() {
+	int data2; int count = 0;
+	Node* head = createNode(10);
+	for (int i = 1; i < 10; i++) {
+		printf("Input %dth data: ", i);
+		scanf("%d", &data2);
+		add(head, data2);
+	}
+
+	Node* current = head;
+	
+	while (current != NULL) {
+		count++;
+		current = current->next;
+	}
+	printf("There are %d nodes in the singly linked list : ", count);
+}
+void fuction45() {
+	int data2; int count = 0; int delete;
+	Node* head = createNode(10);
+	for (int i = 1; i < 5; i++) {
+		printf("Input %dth data: ", i);
+		scanf("%d", &data2);
+		add(head, data2);
+	}
+	//삭제 
+	printf("Input delete data: ");
+	scanf("%d", &delete);
+	Node* current = head;
+	while (current->next->key != delete|| current->key != delete) {
+		current = current->next;
+	}
+	if (current == head) {
+		head = head->next;
+	}
+	else {
+		current->next = current->next->next;
+	}
+	current = head;
+	printf("In the list: ");
+	for (int i = 0; i < 5; i++) {
+		printf("%d", current->key);
+		current = current->next;
+	}
+}
+void fuction46() {
+	//look queue
+}
+void fuction47() {
+	//look doubly linked list
+}
+void fuction48() {
+	//priority queue
+}
+void fuction49() {
+	char buffer[100];
+	FILE* fp;
+	fp = fopen("", "r");
+	fgets(buffer, sizeof(buffer), fp);
+}
+void fuction50() {
+
+}
+
+void main() {
+	//fuction41();
+	fuction42();
+	//fuction43();
+	//fuction44();
+	//fuction45();
+	//fuction46();
+	//fuction47();
+	//fuction48();
+	//fuction49();
+	//fuction50();
+}
