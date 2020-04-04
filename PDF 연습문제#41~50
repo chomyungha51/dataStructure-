@@ -5,7 +5,7 @@ void fuction41() {
 	int arr[5]; int first; int second; int third;
 	printf("Original Array: ");
 	for (int i = 0; i < 5; i++) {
-		scanf("%d ",&arr[i]);
+		scanf("%d", &arr[i]);
 	}
 	for (int x = 0; x < 3; x++) {
 		for (int y = x + 1; y < 4; y++) {
@@ -23,7 +23,6 @@ void fuction41() {
 
 void fuction42() {
 	int arr[5];
-	
 
 	for (int i = 0; i < 5; i++) {
 		printf("Input %dth elements of array: ", i+1);
@@ -41,7 +40,9 @@ void fuction42() {
 		if (arr[i] == NULL) {
 			continue;
 		}
-		else { printf("%d", arr[i]); }
+		else { 
+			printf("%d ", arr[i]);
+		}
 	}
 }
 typedef struct Node {
@@ -57,6 +58,9 @@ Node* createNode(int data) {
 }
 void add(Node* h, int data) {
 	Node* new = createNode(data);
+	while (h->next != NULL) {
+		h = h->next;
+	}
 	new->next=h->next;
 	h->next = new;
 }
@@ -75,28 +79,31 @@ void fuction43() {
 	Node* current = head;
 	printf("In singly linked list : ");
 	for (int i = 0; i < 5; i++) {
-		printf("%d", current->key);
+		printf("%d ", current->key);
 		current = current->next;
 	}
 }
 void fuction44() {
-	int data2; int count = 0;
+	int data2; int count = 1;
 	Node* head = createNode(10);
-	for (int i = 1; i < 10; i++) {
-		printf("Input %dth data: ", i);
+	for (int i = 0; i < 9;i++) {
+		printf("Input data: ");
 		scanf("%d", &data2);
 		add(head, data2);
 	}
-
-	Node* current = head;
-	
+	Node* current = head->next;
 	while (current != NULL) {
 		count++;
 		current = current->next;
 	}
 	printf("There are %d nodes in the singly linked list : ", count);
+	for (int i = 0; i < 5; i++) {
+		printf("%d ", current->key);
+		current = current->next;
+	}
 }
 void fuction45() {
+	printf("The head value of the list is set to 10 already!");
 	int data2; int count = 0; int delete;
 	Node* head = createNode(10);
 	for (int i = 1; i < 5; i++) {
@@ -107,20 +114,36 @@ void fuction45() {
 	//삭제 
 	printf("Input delete data: ");
 	scanf("%d", &delete);
-	Node* current = head;
-	while (current->next->key != delete|| current->key != delete) {
+	Node* current = head; int found = 0;
+
+	//리스트 안에 값이 있으면 found를 1로 만들고 탈출
+	while (current->next != NULL) {
+		if (current->key == delete) {
+			found = 1;
+			break;
+		}
 		current = current->next;
 	}
-	if (current == head) {
+	//리스트 안에 값이 없는 경우
+	if (found==0)
+	{
+		printf("There is not delete data in the list\n");
+	}
+	//첫 번째 값 삭제하는 경우
+	else if (head->key == delete) {
 		head = head->next;
 	}
 	else {
+		current = head;
+		while (current->next->key != delete) {
+			current = current->next;
+		}
 		current->next = current->next->next;
 	}
 	current = head;
 	printf("In the list: ");
-	for (int i = 0; i < 5; i++) {
-		printf("%d", current->key);
+	for (int i = 0; i < 4; i++) {
+		printf("%d ", current->key);
 		current = current->next;
 	}
 }
@@ -134,10 +157,17 @@ void fuction48() {
 	//priority queue
 }
 void fuction49() {
-	char buffer[100];
-	FILE* fp;
-	fp = fopen("", "r");
-	fgets(buffer, sizeof(buffer), fp);
+	char buffer[100] = { 0, }; int count = 0;
+	FILE* fp; int i = 0;
+	fp = fopen("sample.txt", "r");
+	fscanf(fp, "%s", buffer);
+	printf("%s", buffer);
+	while (&buffer[i] != NULL) {
+		count++;
+		i++;
+	}
+	printf("This file has %d characters.", count);
+	fclose(fp);
 }
 void fuction50() {
 
@@ -145,13 +175,10 @@ void fuction50() {
 
 void main() {
 	//fuction41();
-	fuction42();
+	//fuction42();
 	//fuction43();
 	//fuction44();
 	//fuction45();
-	//fuction46();
-	//fuction47();
-	//fuction48();
-	//fuction49();
+	fuction49();
 	//fuction50();
 }
